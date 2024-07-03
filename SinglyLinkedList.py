@@ -31,10 +31,12 @@ class LinkedList:
     def search(self,key):
         """ the operation takes O(n) """
         current = self.head
+        index = 0
         while(current != None):
             if(current.data == key):
-                return current
+                return index
             current = current.next
+            index += 1
         return None
     
     def total(self):
@@ -97,10 +99,10 @@ class LinkedList:
         """it takes O(1)"""
         if self.is_empty():
             return "No items to Delete"
-        current = self.head
         deleted_item = self.head
-        new_head = current.next
-        self.head = new_head
+        self.head = self.head.next
+        if(self.head == None):
+            self.tail = None
         return deleted_item
     
     def delete_at_tail(self):
@@ -108,41 +110,43 @@ class LinkedList:
         if self.is_empty():
             return "No items to Delete"
         current = self.head
-        prev = self.head
-        deleted_item = self.head
-        while(current != None):
-            if(current.next is None):
-                deleted_item = current
-                prev.next = None
-                if(self.tail):
-                    self.tail = prev
-                return deleted_item
-            prev = current
+        if current.next == None:
+            deleted_item = current
+            self.head = None
+            self.tail = None
+            return deleted_item
+        while current.next.next != None:
             current = current.next
+        deleted_item = current.next
+        current.next = None
+        self.tail = current
+        return deleted_item
     
     def delete_at_index(self,index):
         """it takes O(n)"""
         if self.is_empty():
             return "No items to Delete"
+        if index == 0:
+            return self.delete_at_head()
+        
         count  = 0
         current = self.head
         prev = self.head
         deleted_item = self.head
-        if(index == 0):
-            self.delete_at_head()
-            return
-        while(current != None):
-            if(index == count):
-                deleted_item = current
-                prev.next = current.next
-                return deleted_item
+        
+        while current != None and count < index -1:
             count += 1
-            prev = current
             current = current.next
-        if(index > count):
-            print("Index is out of Bound")
+        
+        if current != None and current.next == None:
+            print('Index is Out of Bound')
             return "Index is out of Bound"
-    
+        deleted_item = current.next
+        current.next = current.next.next
+        if current.next is None:
+            self.tail = current
+        return deleted_item
+        
     def clear_list(self):
         self.head = None
         self.tail = None

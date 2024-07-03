@@ -182,3 +182,35 @@ Types Of Linked Lists
 
 The first Node in a linked list is called the head while the last Node is called a tail.
 The tail doesnt point to anything.
+
+## BINARY TREE
+A binary tree is where each node have at most 2 descendants
+A binary tree has two main components a node and a root
+A node with no children is called a leaf node
+Trees are hierarchical data structures
+Array, Linked list, stack, queue are linear data structures
+The height of a node is the number of edges on the longest path between that node and a leaf
+
+### Types of Binary Trees
+1. Full Binary Tree = a full binary tree is where each node either has two descendants or no descendants
+2. Complete Binary Tree = is when each node has two descendants
+
+### Binary Search Insertion Rules
+1. First step is to select a root
+2. When the next value is greater than root go rigth else go left
+3. If you have a repeated value, put it to the right or left
+
+Example:
+arr = [8,3,10,1,6,14,4]
+1. Make the first element of the array the root
+2. The next value is 3. 3 is less than 8 so we place it left
+3. The next value is 10. 10 is greater than 8 so we place it right
+4. The next value is 1. 1 is less than 8 so we go left. 1 is less than 3 so we place is left
+5. The next value is 6. 6 is less than 8 so we go left.6 is greater than 3 so we place it right
+6. The next value is 14. 14 is greater than 8 so we go right. 14 is greater than 10 so we place it right
+7. The next value is 4. 4 is less than 8 so we go left. 4 is greater than 3 so we go right. 4 is less than 6 so we place it left.
+
+### Binary Search Algorithms
+
+1. Breadth First Search -> uses a queue -> FIFO
+2. Breadth First Search -> uses a stack -> LIFO

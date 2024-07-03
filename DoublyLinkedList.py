@@ -16,22 +16,17 @@ class LinkedList:
     def is_empty(self):
         return self.head == None
     
-    def size(self):
-        if(self.is_empty()):
-            return 0
-        size = 0
-        current = self.head
-        while(current != None):
-            size += 1
-            current = current.next
-        return size
+    def __len__(self):
+        return self.count
     
     def search(self,key):
         current = self.head
+        index = 0
         while(current != None):
             if(current.data == key):
-                return current
+                return index
             current = current.next
+            index += 1
         return None
     
     def clear_list(self):
@@ -40,7 +35,7 @@ class LinkedList:
         self.count = 0
     
     def insert_at_head(self,data):
-        node = Node(data, None, None)
+        node = Node(data)
         if(self.head is None):
             self.head = node
             self.tail = node
@@ -51,7 +46,7 @@ class LinkedList:
         self.count += 1
     
     def insert_at_tail(self,data):
-        node  = Node(data,None,None)
+        node  = Node(data)
         if(self.tail):
             node.prev = self.tail
             self.tail.next = node
@@ -62,63 +57,76 @@ class LinkedList:
         self.count += 1
     
     def insert_at_index(self,data,index):
+        if(index < 0 or index > self.count):
+            return 'Index is out of bound'
         if(index == 0):
             self.insert_at_head(data)
             return
-        node = Node(data,None,None)
-        count = 0
+        if(index == self.count):
+            self.insert_at_tail(data)
+            return
+        
+        node = Node(data)
         current = self.head
-        while(current != None):
-            if(index == count + 1):
-                if(current.prev == None and current.next == None):
-                    node.prev = current
-                    current.next = node
-                    self.tail = node
-                else:
-                    node.prev = current
-                    node.next = current.next
-                    current.next = node
-                    if(node.next == None):
-                        self.tail = node
-                return
+        #get the previous node to where you want to insert the new node
+        for _ in range(index-1):
             current = current.next
-            count += 1
-        if(index > count + 1):
-            print('Index is out of Bound')
-            return 'Index is out of Bound'
-
+        next = current.next
+        node.next = next
+        node.prev = current
+        current.next = node
+        if next != None:
+            next.prev = node
         self.count += 1
     
     def delete_at_tail(self):
         if self.is_empty():
             return "No items to Delete"
         current = self.tail
-        prev = current.prev
-        prev.next = None
-        self.tail = prev
+        if(self.head == self.tail):
+            self.head = None
+            self.tail = None
+        else:
+            prev = current.prev
+            prev.next = None
+            self.tail = prev
+        self.count -= 1
         return current
     
     def delete_at_head(self):
         if self.is_empty():
             return "No items to Delete"
         current = self.head
-        self.head = current.next
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = current.next
+            self.head.prev = None
+        self.count -= 1
         return current
     
     def delete_at_index(self,index):
         if self.is_empty():
             return "No items to Delete"
+        if index > self.count or index < 0:
+            return 'Index is out of bound'
+        if index == 0:
+            return self.delete_at_head()
+        if index == self.count - 1:
+            return self.delete_at_tail()
+        
         current = self.head
-        count = 0
-        while(current != None):
-            if(index == count):
-                prev_node = current.prev
-                next_node = current.next
-                next_node.prev = prev_node
-                prev_node.next = next_node
-                return current
-            count += 1
+        for _ in range(index):
             current = current.next
+        
+        prev_node = current.prev
+        next_node = current.next
+        prev_node.next = next_node
+        if(next_node != None):
+            next_node.prev = prev_node
+        self.count -= 1
+        return current
     
     
     def __repr__(self):
