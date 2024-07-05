@@ -190,6 +190,54 @@ A node with no children is called a leaf node
 Trees are hierarchical data structures
 Array, Linked list, stack, queue are linear data structures
 The height of a node is the number of edges on the longest path between that node and a leaf
+A binary tree can either be balanced or unbalanced.
+In a balance tree the difference in height of the left and right subtree of every node should not be greater than one.
+An unbalanced binary tree is a binary tree that has a difference of more than 1 between the right 
+subtree and left subtree.
+
+### Binary Tree Rules
+1. Has at most two children
+2. Exactly one root
+3. exactly 1 path between root and any node
+
+### Binary Tree Terminology
+1. Node: Each circled letter in the preceding diagram represents a node. A node is any data structure that stores data.
+2. Root node: The root node is the first node from which all other nodes in the tree descend from. In other words, a root node is a node that does not have a parent node. In every tree, there is always one unique root node. The root node is node A in the above example tree.
+3. Subtree: A subtree is a tree whose nodes descend from some other tree. For example, nodes F, K, and L form a subtree of the original tree.
+4. Degree: The total number of children of a given node is called the degree of the node. A tree consisting of only one node has a degree of 0. The degree of node A in the preceding diagram is 2, the degree of node B is 3, the degree of node C is 3, and, the degree of node G is 1.
+5. Leaf node: The leaf node does not have any children and is the terminal node of the given tree. The degree of the leaf node is always 0. In the preceding diagram, the nodes J, E, K, L, H, M, and I are all leaf nodes.
+6. Edge: The connection among any given two nodes in the tree is called an edge. The total number of edges in a given tree will be a maximum of one less than the total nodes in the tree. An example edge is shown in Figure 6.1.
+7. Parent: A node that has a subtree is the parent node of that subtree. For example, node B is the parent of nodes D, E, and F, and node F is the parent of nodes K and L.
+8. Child: This is a node that is descendant from a parent node. For example, nodes B and C are children of parent node A, while nodes H, G, and I are the children of parent node C. 
+9. Sibling: All nodes with the same parent node are siblings. For example, node B is the sibling of node C, and, similarly, nodes D, E, and F are also siblings. 
+10. Level: The root node of the tree is considered to be at level 0. The children of the root node are considered to be at level 1, and the children of the nodes at level 1 are considered to be at level 2, and so on. For example, in Figure 6.1, root node A is at level 0, nodes B and C are at level 1, and nodes D, E, F, H, G, and I are at level 2.
+11. Height of a tree: The total number of nodes in the longest path of the tree is the height of the tree. For example, in Figure 6.1, the height of the tree is 4, as the longest paths, A-B-D-J, A-C-G-M, and A-B-F-K, all have a total number of four nodes each.
+12. Depth: The depth of a node is the number of edges from the root of the tree to that node. In the preceding tree example, the depth of node H is 2.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Types of Binary Trees
 1. Full Binary Tree = a full binary tree is where each node either has two descendants or no descendants
